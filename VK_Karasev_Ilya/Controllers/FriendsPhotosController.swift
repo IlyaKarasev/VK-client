@@ -92,6 +92,16 @@ class FriendsPhotosController: UICollectionViewController {
     @objc func cellLikePressed(_ sender: LikeControl) {
         print("The cell liked status set to: \(sender.likeState).")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowBigPhoto",
+            let bigPhotoVC = segue.destination as? BigPhotoController {
+        
+            let cell = sender as! FriendsPhotosCell
+            let bigPhoto = cell.friendPhotoView.image
+            bigPhotoVC.currentImage = bigPhoto
+        }
+    }
 }
 
 

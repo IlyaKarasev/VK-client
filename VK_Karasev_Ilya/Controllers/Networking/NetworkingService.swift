@@ -119,13 +119,13 @@ class NetworkingService {
     }
     
     // Получаем список новостей
-    public func loadNews(completion: ((Swift.Result<[News], Error>) -> Void)? = nil) {
+    public func loadNews(completion: ((Swift.Result<[TestItems], Error>) -> Void)? = nil) {
         let path = "/method/newsfeed.get"
         
         let params: Parameters = [
             "access_token": token,
             "filters": "post",
-            "count": "5",
+            "count": "10",
             "v": "5.95"
         ]
         
@@ -133,8 +133,18 @@ class NetworkingService {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                let news = json["response"].arrayValue.map { News($0) }
-                completion?(.success(news))
+                let itemsJson = json["response"]["items"].arrayValue
+                let items = itemsJson.map { TestItems($0) }
+                
+                let profilesJson = json["response"]["profiles"].arrayValue
+                let profiles = profilesJson.map { TestItems($0) }
+                
+                let groupsJson = json["response"]["groups"].arrayValue
+                let groups = groupsJson.map { TestItems($0) }
+                
+                completion?(.success(items))
+                completion?(.success(profiles))
+                completion?(.success(groups))
             case .failure(let error):
                 completion?(.failure(error))
             }

@@ -37,10 +37,10 @@ class NewsLikesCell: UITableViewCell {
         CommentLabel.text = String(comments)
         
         let reposts = news.reposts
-        CommentLabel.text = String(reposts)
+        ShareLabel.text = String(reposts)
         
         let views = news.views
-        CommentLabel.text = String(views)
+        WatchLabel.text = String(views)
     }
     
     override func awakeFromNib() {

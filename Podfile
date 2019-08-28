@@ -10,9 +10,6 @@ pod 'SwiftyJSON', '~> 5.0.0'
 pod 'Kingfisher', '~> 5.5.0'
 pod 'RealmSwift', '~> 3.16.1'
 pod 'SwiftKeychainWrapper', '~> 3.4.0'
-pod 'Firebase/Analytics'
-pod 'Firebase/Auth'
-pod 'Firebase/Firestore'
 pod 'ObjectMapper'
 
   # Pods for VK_Karasev_Ilya
